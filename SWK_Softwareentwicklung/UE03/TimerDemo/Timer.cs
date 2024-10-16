@@ -19,8 +19,10 @@ namespace TimerDemo
         }
 
         public int Interval { get; set; } = DEFAULT_INTERVAL;
-        
-        public ExpiredEventHandler? Expired { get; set; }
+
+        //public ExpiredEventHandler? Expired { get; set; }
+        public event ExpiredEventHandler? Expired;
+
 
         public void Start() => thread.Start();
 
