@@ -57,7 +57,7 @@ public class Downloader
         return task;
     }
 
-    public async void DownloadAsync_Await(string url, string filePath)
+    public async Task DownloadAsync_Await(string url, string filePath)
     {
         using var client = new WebClient();
         byte[] bytes = await client.DownloadDataTaskAsync(url);
@@ -67,15 +67,16 @@ public class Downloader
         WriteLine($"{nameof(DownloadAsync_Await)}: Saved '{filePath}'");
     }
 
-    public void DownloadMultipleAsync(string url1, string filePath1, string url2, string filePath2)
+    public async Task DownloadMultipleAsync(string url1, string filePath1, string url2, string filePath2)
     {
-        // TODO
+
+        Task t1 = DownloadAsync_Await(url1, filePath1);
         WriteLine($"{nameof(DownloadMultipleAsync)}: {nameof(DownloadAsync_Await)} of '{url1}' started");
 
-        // TODO
+        Task t2 = DownloadAsync_Await(url2, filePath2);
         WriteLine($"{nameof(DownloadMultipleAsync)}: {nameof(DownloadAsync_Await)} of '{url2}' started");
 
-        // TODO
+        await Task.WhenAll(t1, t2);
         WriteLine($"{nameof(DownloadMultipleAsync)}: {nameof(DownloadAsync_Await)} of all files completed");
     }
 }

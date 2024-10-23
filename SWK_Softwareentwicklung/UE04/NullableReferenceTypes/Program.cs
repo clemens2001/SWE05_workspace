@@ -1,4 +1,6 @@
-﻿var person = new Person("Huber", "Franz");
+﻿#nullable enable // Enable nullable reference types
+
+var person = new Person("Huber", "Franz");
 person.FirstName = null;
 person.LastName = null;
 person.LastName = "Huber-Mayr";

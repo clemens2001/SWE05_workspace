@@ -25,17 +25,17 @@ WriteLine($"{nameof(Downloader.DownloadAsync_Task)} completed work");
 WriteLine();
 
 WriteLine($"====================== {nameof(Downloader.DownloadAsync_Await)} ======================");
-downloader.DownloadAsync_Await(URL2, "softuni_async_await.pdf");
+var task2 = downloader.DownloadAsync_Await(URL2, "softuni_async_await.pdf");
 WriteLine($"{nameof(Downloader.DownloadAsync_Await)} gave control back to caller");
-// TODO
+await task2;    // this is a non-blocking wait
 WriteLine($"{nameof(Downloader.DownloadAsync_Await)} completed work");
 WriteLine();
 
 WriteLine($"======================= {nameof(Downloader.DownloadMultipleAsync)} =======================");
-// TODO
+var task3 = downloader.DownloadMultipleAsync(URL1, "async_multiple_progit.pdf", URL2, "async_multiple_softuni.pdf");
 WriteLine($"{nameof(Downloader.DownloadMultipleAsync)} gave control back to caller");
-// TODO
+await task3;
 WriteLine($"{nameof(Downloader.DownloadMultipleAsync)} completed work");
 WriteLine();
 
-ReadLine(); 
+ReadLine();
