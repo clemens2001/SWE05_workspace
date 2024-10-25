@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HelloWorldApp</string>
+    <string name="greeting">Servus</string>
+    <string name="compose_email">Email schreiben</string>
+</resources>
