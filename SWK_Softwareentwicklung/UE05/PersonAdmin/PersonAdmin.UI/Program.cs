@@ -4,6 +4,7 @@ using PersonAdmin.BusinessLogic;
 using PersonAdmin.Dal.Ado;
 using PersonAdmin.Dal.Interface;
 using PersonAdmin.Dal.Simple;
+using PersonAdmin.Domain;
 
 
 IConfiguration configuration = new ConfigurationBuilder()
@@ -22,4 +23,6 @@ void Test(IPersonDao dao)
     var service = new PersonService(dao, Console.Out);
 
     service.TestFindAll();
+    service.TestFindById();
 }
+

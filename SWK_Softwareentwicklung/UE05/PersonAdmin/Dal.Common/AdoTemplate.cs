@@ -10,12 +10,26 @@ namespace Dal.Common
 {
     public class AdoTemplate(IConnectionFactory connectionFactory)
     {
-        public IEnumerable<T> Query<T>(string sql, RowMapper<T> rowMapper)
+        private void AddParameters(DbCommand command, QueryParameter[] parameters)
+        {
+            foreach (var parameter in parameters) {
+                var dbParameter = command.CreateParameter();
+                dbParameter.ParameterName = parameter.Name;
+                dbParameter.Value = parameter.Value;
+                command.Parameters.Add(dbParameter);
+            }
+        }
+
+        public T? QuerySingle<T> (string sql, RowMapper<T> rowMapper, params QueryParameter[] parameters)
+            => Query(sql, rowMapper, parameters).SingleOrDefault();
+
+        public IEnumerable<T> Query<T>(string sql, RowMapper<T> rowMapper, params QueryParameter[] parameters)
         {
             using DbConnection connection = connectionFactory.OpenConnection();
 
             using DbCommand command = connection.CreateCommand();
             command.CommandText = sql;
+            AddParameters(command, parameters);
 
             using DbDataReader reader = command.ExecuteReader();
 

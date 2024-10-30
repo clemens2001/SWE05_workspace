@@ -10,5 +10,6 @@ namespace PersonAdmin.Dal.Interface
     public interface IPersonDao
     {
         IEnumerable<Person> FindAll();
+        Person? FindById(int id);
     }
 }

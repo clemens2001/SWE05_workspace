@@ -16,4 +16,10 @@ public class SimplePersonDao : IPersonDao
     {
         return personList;
     }
+
+    public Person? FindById(int id)
+    {
+        //return personList.FirstOrDefault(p => p.Id == id);
+        return personList.SingleOrDefault(p => p.Id == id);
+    }
 }

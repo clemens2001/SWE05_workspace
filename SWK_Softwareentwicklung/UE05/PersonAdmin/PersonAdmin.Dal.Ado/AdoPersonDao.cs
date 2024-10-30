@@ -24,9 +24,14 @@ namespace PersonAdmin.Dal.Ado
         public IEnumerable<Person> FindAll() =>
             template.Query("SELECT * FROM Person", MapRowToPerson);
 
+        public Person? FindById(int id) =>
+            template.Query(
+                $"SELECT * FROM Person WHERE id = @id",
+                MapRowToPerson, new QueryParameter("@id", id)).SingleOrDefault();
+
         private Person MapRowToPerson(IDataRecord row) =>
             new Person(
-                (int)row["Id"],
+                (int)row["id"],
                 (string)row["first_name"],
                 (string)row["last_name"],
                 (DateTime)row["date_of_birth"]);
