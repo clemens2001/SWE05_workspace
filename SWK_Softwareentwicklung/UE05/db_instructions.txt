@@ -1,0 +1,15 @@
+Laden Sie nachstehendes ZIP-Archiv herunter und entpacken Sie es.
+Gehen Sie in einer Terminal-Anwendung in das Verzeichnis, in dem sich docker-compose.yml befindet und führen Sie folgendes Kommando aus:
+      docker compose up -d
+Die erste Ausführung dieses Kommandos wird einige Zeit in Anspruch nehmen, da damit das 1.6 GB große Docker-Image von Microsoft SQLServer heruntergeladen wird.
+
+
+
+In VS > View > Server Explorer > Connect to Database > Add MySQL connection
+
+server n: localhost
+username: sa
+password: Swk5-rocks!
+database: person_db
+
+in properties steht connection string
