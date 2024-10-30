@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using PersonAdmin.Dal.Interface;
 using PersonAdmin.Domain;
 namespace PersonAdmin.BusinessLogic
@@ -46,6 +47,31 @@ namespace PersonAdmin.BusinessLogic
             else {
                 writer.WriteLine("Person not found");
             }
+        }
+
+        public void TestTransactions()
+        {
+            writer.WriteLine("TestTransactions");
+
+            try
+            {
+                // we want to make sure that either both updates are persisted, or none
+
+                using (var transaction = new TransactionScope())
+                {
+                    personDao.Update(new Person(2, "Before", "Exception", DateTime.Now));
+                    throw new Exception();
+                    personDao.Update(new Person(3, "After", "Exception", DateTime.Now));
+
+                    transaction.Complete(); // commit
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            writer.WriteLine();
         }
     }
 }

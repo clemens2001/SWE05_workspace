@@ -25,5 +25,7 @@ void Test(IPersonDao dao)
     service.TestFindAll();
     service.TestFindById();
     service.TestUpdate();
+    service.TestTransactions();
+    service.TestFindAll();
 }
 
