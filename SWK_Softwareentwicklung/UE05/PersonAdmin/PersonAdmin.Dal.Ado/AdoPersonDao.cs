@@ -29,6 +29,16 @@ namespace PersonAdmin.Dal.Ado
                 $"SELECT * FROM Person WHERE id = @id",
                 MapRowToPerson, new QueryParameter("@id", id)).SingleOrDefault();
 
+        public bool Update(Person person)
+        {
+            return 1 == template.Execute(
+                "UPDATE Person SET first_name = @fn, last_name = @ln, date_of_birth = @dob WHERE id = @id",
+                new QueryParameter("@fn", person.FirstName),
+                new QueryParameter("@ln", person.LastName),
+                new QueryParameter("@dob", person.DateOfBirth),
+                new QueryParameter("@id", person.Id));
+        }
+
         private Person MapRowToPerson(IDataRecord row) =>
             new Person(
                 (int)row["id"],

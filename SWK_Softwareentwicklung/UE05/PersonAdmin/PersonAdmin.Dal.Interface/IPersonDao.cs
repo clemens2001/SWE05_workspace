@@ -11,5 +11,7 @@ namespace PersonAdmin.Dal.Interface
     {
         IEnumerable<Person> FindAll();
         Person? FindById(int id);
+
+        bool Update(Person person);
     }
 }

@@ -42,5 +42,16 @@ namespace Dal.Common
 
             return items;
         }
+
+        public int Execute(string sql, params QueryParameter[] parameters)
+        {
+            using DbConnection connection = connectionFactory.OpenConnection();
+
+            using DbCommand command = connection.CreateCommand();
+            command.CommandText = sql;
+            AddParameters(command, parameters);
+
+            return command.ExecuteNonQuery();
+        }
     }
 }

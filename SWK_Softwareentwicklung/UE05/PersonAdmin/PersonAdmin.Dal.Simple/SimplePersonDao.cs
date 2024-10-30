@@ -22,4 +22,16 @@ public class SimplePersonDao : IPersonDao
         //return personList.FirstOrDefault(p => p.Id == id);
         return personList.SingleOrDefault(p => p.Id == id);
     }
+
+    public bool Update(Person person)
+    {
+        Person? existingPerson = FindById(person.Id);
+        if (existingPerson is null) {
+            return false;
+        }
+
+        personList.Remove(existingPerson);
+        personList.Add(person);
+        return true;
+    }
 }

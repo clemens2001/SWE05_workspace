@@ -29,5 +29,23 @@ namespace PersonAdmin.BusinessLogic
 
             writer.WriteLine();
         }
+
+        public void TestUpdate()
+        {
+            Person? person = personDao.FindById(1);
+            writer.WriteLine($"before update: {person?.ToString() ?? "<null>"}");
+
+            if (person != null) {
+                person.DateOfBirth = person.DateOfBirth.AddDays(1);
+
+                bool success = personDao.Update(person);
+
+                person = personDao.FindById(1);
+                writer.WriteLine($"after update: {person?.ToString() ?? "<null>"}");
+            }
+            else {
+                writer.WriteLine("Person not found");
+            }
+        }
     }
 }
