@@ -32,21 +32,18 @@ namespace PersonAdmin.BusinessLogic
             writer.WriteLine();
         }
 
-        public async Task TestUpdateAsync(CancellationToken cancellationToken = default)
+        public async Task TestUpdateAsync(int id, CancellationToken cancellationToken = default)
         {
-            Person? person = await personDao.FindByIdAsync(1, cancellationToken);
-            writer.WriteLine($"before update: {person?.ToString() ?? "<null>"}");
+            Person? person = await personDao.FindByIdAsync(id, cancellationToken);
+            writer.WriteLine($"before update (id={id}): {person?.ToString() ?? "<null>"}");
 
             if (person != null) {
                 person.DateOfBirth = person.DateOfBirth.AddDays(1);
 
                 bool success = await personDao.UpdateAsync(person, cancellationToken);
 
-                person = await personDao.FindByIdAsync(1, cancellationToken);
+                person = await personDao.FindByIdAsync(id, cancellationToken);
                 writer.WriteLine($"after update: {person?.ToString() ?? "<null>"}");
-            }
-            else {
-                writer.WriteLine("Person not found");
             }
         }
 

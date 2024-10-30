@@ -28,7 +28,7 @@ async Task TestAsync(IPersonDao dao, CancellationToken cancellationToken = defau
 
     await service.TestFindAllAsync(cancellationToken);
     await service.TestFindByIdAsync(cancellationToken);
-    await service.TestUpdateAsync(cancellationToken);
+    await service.TestUpdateAsync(1, cancellationToken);
     await service.TestTransactionsAsync(cancellationToken);
     await service.TestFindAllAsync(cancellationToken);
 }

@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonAdmin.Domain", "Perso
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonAdmin.BusinessLogic", "PersonAdmin.BusinessLogic\PersonAdmin.BusinessLogic.csproj", "{ED68A97D-DCC0-4C87-8FEE-0AAAC279A855}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonAdmin.Test", "PersonAdmin.Test\PersonAdmin.Test.csproj", "{0557E056-194B-47DF-9E23-9042D97F0D00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{ED68A97D-DCC0-4C87-8FEE-0AAAC279A855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED68A97D-DCC0-4C87-8FEE-0AAAC279A855}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED68A97D-DCC0-4C87-8FEE-0AAAC279A855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0557E056-194B-47DF-9E23-9042D97F0D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0557E056-194B-47DF-9E23-9042D97F0D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0557E056-194B-47DF-9E23-9042D97F0D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0557E056-194B-47DF-9E23-9042D97F0D00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
