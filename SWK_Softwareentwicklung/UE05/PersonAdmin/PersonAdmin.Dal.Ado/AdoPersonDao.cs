@@ -21,18 +21,19 @@ namespace PersonAdmin.Dal.Ado
             template = new AdoTemplate(connectionFactory);
         }
 
-        public IEnumerable<Person> FindAll() =>
-            template.Query("SELECT * FROM Person", MapRowToPerson);
+        public async Task<IEnumerable<Person>> FindAllAsync(CancellationToken cancellationToken = default) =>
+            await template.QueryAsync("SELECT * FROM Person", MapRowToPerson, cancellationToken);
 
-        public Person? FindById(int id) =>
-            template.Query(
+        public async Task<Person?> FindByIdAsync(int id, CancellationToken cancellationToken = default) =>
+            (await template.QueryAsync(
                 $"SELECT * FROM Person WHERE id = @id",
-                MapRowToPerson, new QueryParameter("@id", id)).SingleOrDefault();
+                MapRowToPerson, cancellationToken, new QueryParameter("@id", id))).SingleOrDefault();
 
-        public bool Update(Person person)
+        public async Task<bool> UpdateAsync(Person person, CancellationToken cancellationToken = default)
         {
-            return 1 == template.Execute(
+            return 1 == await template.ExecuteAsync(
                 "UPDATE Person SET first_name = @fn, last_name = @ln, date_of_birth = @dob WHERE id = @id",
+                cancellationToken,
                 new QueryParameter("@fn", person.FirstName),
                 new QueryParameter("@ln", person.LastName),
                 new QueryParameter("@dob", person.DateOfBirth),

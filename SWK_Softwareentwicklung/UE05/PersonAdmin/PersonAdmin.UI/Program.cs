@@ -14,18 +14,22 @@ IConfiguration configuration = new ConfigurationBuilder()
 var connectionFactory = 
     DefaultConnectionFactory.FromConfiguration(configuration, "PersonDbConnection");
 
-Test(new SimplePersonDao());
-Test(new AdoPersonDao(connectionFactory));
+var tokenSource = new CancellationTokenSource();
 
-void Test(IPersonDao dao)
+await TestAsync(new SimplePersonDao(), tokenSource.Token);
+await TestAsync(new AdoPersonDao(connectionFactory), tokenSource.Token);
+
+// tokenSource.Cancel();
+
+async Task TestAsync(IPersonDao dao, CancellationToken cancellationToken = default)
 {
     Console.WriteLine(dao.GetType());
     var service = new PersonService(dao, Console.Out);
 
-    service.TestFindAll();
-    service.TestFindById();
-    service.TestUpdate();
-    service.TestTransactions();
-    service.TestFindAll();
+    await service.TestFindAllAsync(cancellationToken);
+    await service.TestFindByIdAsync(cancellationToken);
+    await service.TestUpdateAsync(cancellationToken);
+    await service.TestTransactionsAsync(cancellationToken);
+    await service.TestFindAllAsync(cancellationToken);
 }
 

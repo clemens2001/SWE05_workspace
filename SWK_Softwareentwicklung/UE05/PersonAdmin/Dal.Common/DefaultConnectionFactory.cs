@@ -44,5 +44,17 @@ namespace Dal.Common
 
             return connection;
         }
+
+        public async Task<DbConnection> OpenConnectionAsync(CancellationToken cancellationToken = default)
+        {
+            DbConnection connection = dbProviderFactory.CreateConnection()
+                ?? throw new InvalidOperationException(
+                    $"Failed to create connection to provider {ProviderName}");
+
+            connection.ConnectionString = ConnectionString;
+            await connection.OpenAsync(cancellationToken);
+
+            return connection;
+        }
     }
 }

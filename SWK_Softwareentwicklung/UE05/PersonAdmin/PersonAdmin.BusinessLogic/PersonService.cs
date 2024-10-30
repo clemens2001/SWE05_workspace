@@ -10,38 +10,39 @@ namespace PersonAdmin.BusinessLogic
 {
     public class PersonService(IPersonDao personDao,TextWriter writer)
     {
-        public void TestFindAll()
+        public async Task TestFindAllAsync(CancellationToken cancellationToken = default)
         {
             writer.WriteLine("TestFindAll");
-            personDao.FindAll()
-                .ToList()
-                .ForEach(p => writer.WriteLine(
+
+            var persons = await personDao.FindAllAsync(cancellationToken);
+
+            persons.ToList().ForEach(p => writer.WriteLine(
                     $"{p.Id,5} | {p.FirstName,-10} | {p.LastName,-15} | {p.DateOfBirth,10:dd.MM.yyyy}"));
 
             writer.WriteLine();
         }
-        public void TestFindById()
+        public async Task TestFindByIdAsync(CancellationToken cancellationToken = default)
         {
-            Person? person1 = personDao.FindById(1);
+            Person? person1 = await personDao.FindByIdAsync(1, cancellationToken);
             writer.WriteLine($"FindById(1): {person1?.ToString() ?? "<null>"}");
 
-            Person? person2 = personDao.FindById(10);
+            Person? person2 = await personDao.FindByIdAsync(10, cancellationToken);
             writer.WriteLine($"FindById(10): {person2?.ToString() ?? "<null>"}");
 
             writer.WriteLine();
         }
 
-        public void TestUpdate()
+        public async Task TestUpdateAsync(CancellationToken cancellationToken = default)
         {
-            Person? person = personDao.FindById(1);
+            Person? person = await personDao.FindByIdAsync(1, cancellationToken);
             writer.WriteLine($"before update: {person?.ToString() ?? "<null>"}");
 
             if (person != null) {
                 person.DateOfBirth = person.DateOfBirth.AddDays(1);
 
-                bool success = personDao.Update(person);
+                bool success = await personDao.UpdateAsync(person, cancellationToken);
 
-                person = personDao.FindById(1);
+                person = await personDao.FindByIdAsync(1, cancellationToken);
                 writer.WriteLine($"after update: {person?.ToString() ?? "<null>"}");
             }
             else {
@@ -49,7 +50,7 @@ namespace PersonAdmin.BusinessLogic
             }
         }
 
-        public void TestTransactions()
+        public async Task TestTransactionsAsync(CancellationToken cancellationToken = default)
         {
             writer.WriteLine("TestTransactions");
 
@@ -57,11 +58,11 @@ namespace PersonAdmin.BusinessLogic
             {
                 // we want to make sure that either both updates are persisted, or none
 
-                using (var transaction = new TransactionScope())
+                using (var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                 {
-                    personDao.Update(new Person(2, "Before", "Exception", DateTime.Now));
+                    await personDao.UpdateAsync(new Person(2, "Before", "Exception", DateTime.Now), cancellationToken);
                     throw new Exception();
-                    personDao.Update(new Person(3, "After", "Exception", DateTime.Now));
+                    await personDao.UpdateAsync(new Person(3, "After", "Exception", DateTime.Now), cancellationToken);
 
                     transaction.Complete(); // commit
                 }

@@ -12,20 +12,20 @@ public class SimplePersonDao : IPersonDao
         new Person(3, "Max", "Mustermann", DateTime.Now.AddYears(-30))
     };
 
-    public IEnumerable<Person> FindAll()
+    public Task<IEnumerable<Person>> FindAllAsync(CancellationToken cancellationToken = default)
     {
-        return personList;
+        return Task.FromResult<IEnumerable<Person>>(personList);
     }
 
-    public Person? FindById(int id)
+    public Task<Person?> FindByIdAsync(int id, CancellationToken cancellationToken = default)
     {
         //return personList.FirstOrDefault(p => p.Id == id);
-        return personList.SingleOrDefault(p => p.Id == id);
+        return Task.FromResult<Person?>(personList.SingleOrDefault(p => p.Id == id));
     }
 
-    public bool Update(Person person)
+    public async Task<bool> UpdateAsync(Person person, CancellationToken cancellationToken = default)
     {
-        Person? existingPerson = FindById(person.Id);
+        Person? existingPerson = await FindByIdAsync(person.Id, cancellationToken);
         if (existingPerson is null) {
             return false;
         }

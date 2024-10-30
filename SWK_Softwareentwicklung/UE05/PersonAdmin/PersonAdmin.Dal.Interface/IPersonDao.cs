@@ -9,9 +9,9 @@ namespace PersonAdmin.Dal.Interface
 {
     public interface IPersonDao
     {
-        IEnumerable<Person> FindAll();
-        Person? FindById(int id);
+        Task<IEnumerable<Person>> FindAllAsync(CancellationToken cancellationToken = default);
+        Task<Person?> FindByIdAsync(int id, CancellationToken cancellationToken = default);
 
-        bool Update(Person person);
+        Task<bool> UpdateAsync(Person person, CancellationToken cancellationToken = default);
     }
 }

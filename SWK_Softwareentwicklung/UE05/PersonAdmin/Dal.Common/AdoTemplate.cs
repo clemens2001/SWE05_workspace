@@ -20,38 +20,48 @@ namespace Dal.Common
             }
         }
 
-        public T? QuerySingle<T> (string sql, RowMapper<T> rowMapper, params QueryParameter[] parameters)
-            => Query(sql, rowMapper, parameters).SingleOrDefault();
+        public async Task<T?> QuerySingleAsync<T> (
+            string sql, 
+            RowMapper<T> rowMapper, 
+            CancellationToken cancellationToken = default, 
+            params QueryParameter[] parameters)
+            => (await QueryAsync(sql, rowMapper, cancellationToken, parameters)).SingleOrDefault();
 
-        public IEnumerable<T> Query<T>(string sql, RowMapper<T> rowMapper, params QueryParameter[] parameters)
+        public async Task<IEnumerable<T>> QueryAsync<T>(
+            string sql, 
+            RowMapper<T> rowMapper,
+            CancellationToken cancellationToken = default,
+            params QueryParameter[] parameters)
         {
-            using DbConnection connection = connectionFactory.OpenConnection();
+            await using DbConnection connection = await connectionFactory.OpenConnectionAsync(cancellationToken);
 
-            using DbCommand command = connection.CreateCommand();
+            await using DbCommand command = connection.CreateCommand();
             command.CommandText = sql;
             AddParameters(command, parameters);
 
-            using DbDataReader reader = command.ExecuteReader();
+            await using DbDataReader reader = await command.ExecuteReaderAsync(cancellationToken);
 
 
             var items = new List<T>();
 
-            while (reader.Read()) {
+            while (await reader.ReadAsync(cancellationToken)) {
                 items.Add(rowMapper(reader));
             }
 
             return items;
         }
 
-        public int Execute(string sql, params QueryParameter[] parameters)
+        public async Task<int> ExecuteAsync(string sql,
+            CancellationToken cancellationToken = default,
+            params QueryParameter[] parameters)
         {
-            using DbConnection connection = connectionFactory.OpenConnection();
+            await using DbConnection connection = await connectionFactory.OpenConnectionAsync(cancellationToken);
 
-            using DbCommand command = connection.CreateCommand();
+            await using DbCommand command = connection.CreateCommand();
             command.CommandText = sql;
             AddParameters(command, parameters);
 
-            return command.ExecuteNonQuery();
+            return await command.ExecuteNonQueryAsync(cancellationToken);
         }
     }
 }
