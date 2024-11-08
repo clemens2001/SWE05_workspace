@@ -20,20 +20,20 @@ class MainActivity : Activity(), View.OnClickListener {
 
     class MyOnClickListener : View.OnClickListener {
         override fun onClick(_v: View?) {
-            when (_v?.id) {
-                R.id.button_03 -> {
-                    Log.d(TAG, "MyOnClickListener::onClick Button 03 clicked")
-                }
-                R.id.button_04 -> {
-                    Log.d(TAG, "MyOnClickListener::onClick Button 04 clicked")
-                }
-                else -> {
-                    Log.d(TAG, "MyOnClickListener::onClick unhandled onClick id encountered")
-                }
+        when (_v?.id) {
+            R.id.button_03 -> {
+                Log.d(TAG, "MyOnClickListener::onClick Button 03 clicked")
+            }
+            R.id.button_04 -> {
+                Log.d(TAG, "MyOnClickListener::onClick Button 04 clicked")
+            }
+            else -> {
+                Log.d(TAG, "MyOnClickListener::onClick unhandled onClick id encountered")
             }
         }
-
     }
+
+}
 
     override fun addContentView(view: View?, params: ViewGroup.LayoutParams?) {
         super.addContentView(view, params)
