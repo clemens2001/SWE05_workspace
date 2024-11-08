@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HelloWorldApp</string>
+    <string name="greeting">Hello!</string>
+    <string name="compose_email">Compose Email</string>
+</resources>
