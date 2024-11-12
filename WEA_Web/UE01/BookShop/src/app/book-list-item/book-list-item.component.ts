@@ -9,7 +9,7 @@ import { Book } from '../shared/book';
   styles: ``
 })
 export class BookListItemComponent {
-  @Input() book: Book = new Book();
-  //book = input.required<Book>();
+  //@Input() book: Book = new Book();
+  book = input.required<Book>();
 
 }
