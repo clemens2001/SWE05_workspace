@@ -1,9 +1,7 @@
 <div class="ui middle aligned selection divided list">
-    <a class="item" *ngFor="let book of books">
-        <div class="content">
-            <div class="header">{{ book.title }}</div>
-            <div class="description">{{ book.author }}</div>
-            <div class="extra">Year {{ book.year}}</div>
-        </div>
-    </a>
+    @for(book of books; track book.id){
+        <a class="item wea5-book-list-item" [book]="book">
+
+        </a>
+    }
 </div>

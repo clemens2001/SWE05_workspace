@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
-import { CommonModule } from '@angular/common';
+import { BookListItemComponent } from '../book-list-item/book-list-item.component';
 
 @Component({
   selector: 'wea5-book-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [BookListItemComponent],
   templateUrl: './book-list.component.html',
   styles: ``
 })
