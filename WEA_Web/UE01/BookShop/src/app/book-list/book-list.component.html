@@ -1,0 +1,9 @@
+<div class="ui middle aligned selection divided list">
+    <a class="item" *ngFor="let book of books">
+        <div class="content">
+            <div class="header">{{ book.title }}</div>
+            <div class="description">{{ book.author }}</div>
+            <div class="extra">Year {{ book.year}}</div>
+        </div>
+    </a>
+</div>
