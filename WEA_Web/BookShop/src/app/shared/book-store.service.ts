@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Book} from './book';
+import {HttpClient} from '@angular/common/http';
+import {map, Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +11,27 @@ export class BookStoreService {
 
   books: Book[] = [];
 
-  getAll() : Book[] {
+/*  getAll() : Book[] {
     return this.books;
+  }*/
+
+  getAll() : Observable<Book[]> {
+    //return this.httpClient.get<Book[]>(environment.server + '/books');
+    return this.httpClient.get<Book[]>(`${environment.server}/books`)
+      .pipe(map((res: any) => res['books']));
   }
 
-  getBookById(id: string): Book {
+/*  getBookById(id: string): Book {
     return this.books.find(book => book.id === id) || new Book();
+  }*/
+
+  getBookById(id: string): Observable<Book> {
+    return this.httpClient.get<Book>(`${environment.server}/book/${id}`)
+      .pipe(map((res: any) => res['book']));
   }
 
-  constructor() {
-    this.books = [
+  constructor(private httpClient: HttpClient) {
+    /*this.books = [
       new Book(
         '1',
         'Mann Thomas',
@@ -186,6 +200,6 @@ export class BookStoreService {
         'sehr abgelegene Alpentäler und zu deren starrköpfigen Bewohnern, die noch wortkarger sind als er. ',
         'Himmelhorn_Kluftingers_ neuer_Fall.jpg'
       )
-    ];
+    ];*/
   }
 }
