@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import {Component, Input, output} from '@angular/core';
+import {Component, Input, OnInit, output} from '@angular/core';
 import { Book } from '../shared/book';
+import {BookStoreService} from '../shared/book-store.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'wea5-book-details',
@@ -9,11 +11,22 @@ import { Book } from '../shared/book';
   templateUrl: './book-details.component.html',
   styles: ``
 })
-export class BookDetailsComponent {
+export class BookDetailsComponent implements OnInit{
   @Input() book: Book = new Book();
+  // showListEvent = output();  // @Output / EventEmitter
 
-  showListEvent = output();  // @Output / EventEmitter
+  constructor(public bookStoreService: BookStoreService,
+              private route: ActivatedRoute,
+              private router: Router) {
+  }
+
+  ngOnInit() {
+    const params = this.route.snapshot.params;
+    this.book = this.bookStoreService.getBookById(params['id']);
+  }
+
   showBookList() {
-    this.showListEvent.emit();
+    // this.showListEvent.emit();
+    this.router.navigateByUrl('/books');
   }
 }

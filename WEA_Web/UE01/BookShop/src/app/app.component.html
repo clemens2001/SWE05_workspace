@@ -1,6 +1,5 @@
-@defer{
+<!--@defer{
   @if(listOn) {
-    <h1>Welcome to WEA5 Bookshop!</h1>
     <wea5-book-list (showDetailsEvent)="showDetails($event)" />
   }
   @if(detailsOn) {
@@ -10,4 +9,10 @@
   <div class="ui active inverted dimmer">
     <div class="ui text loader large">Loading ...</div>
   </div>
-}
+}-->
+
+<div class="ui two item tabs menu">
+  <a routerLink="home" routerLinkActive="active" class="item" >Home</a>
+  <a routerLink="books" routerLinkActive="active" class="item" >Bücher</a>
+</div>
+<router-outlet />

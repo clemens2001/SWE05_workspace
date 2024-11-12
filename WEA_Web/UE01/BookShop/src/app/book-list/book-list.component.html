@@ -1,8 +1,9 @@
 <div class="ui middle aligned selection divided list">
     @for(book of books; track book.id){
         <a class="item wea5-book-list-item" [book]="book"
-            (click)="showDetails(book)">
-
+            (click)="showDetails(book)"
+            [routerLink]="book.id">
+            >
         </a>
     }
 </div>

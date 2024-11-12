@@ -13,7 +13,7 @@ export class BookStoreService {
   }
 
   getBookById(id: string): Book {
-    return this.books.find(book => book.isbn === id) || new Book();
+    return this.books.find(book => book.id === id) || new Book();
   }
 
   constructor() {
