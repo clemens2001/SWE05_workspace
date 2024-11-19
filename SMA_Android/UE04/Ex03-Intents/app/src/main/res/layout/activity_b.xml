@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityB">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Activity B"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/activity_b_button_web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="web page"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/activity_b_button_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Phone"
+        app:layout_constraintBottom_toTopOf="@+id/activity_b_button_web"
+        app:layout_constraintEnd_toEndOf="@+id/activity_b_button_web"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="@+id/activity_b_button_web" />
+
+    <Button
+        android:id="@+id/activity_b_button_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Maps"
+        app:layout_constraintEnd_toEndOf="@+id/activity_b_button_web"
+        app:layout_constraintStart_toStartOf="@+id/activity_b_button_web"
+        app:layout_constraintTop_toBottomOf="@+id/activity_b_button_web" />
+
+    <TextView
+        android:id="@+id/___textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Data"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_b_textview_data_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="undefined"
+        app:layout_constraintBottom_toBottomOf="@+id/___textView3"
+        app:layout_constraintStart_toEndOf="@+id/___textView3"
+        app:layout_constraintTop_toTopOf="@+id/___textView3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

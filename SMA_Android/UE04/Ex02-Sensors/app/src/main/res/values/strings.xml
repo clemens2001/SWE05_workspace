@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Ex02</string>
+    <string name="default_sensor_value_text">undefined</string>
+</resources>
