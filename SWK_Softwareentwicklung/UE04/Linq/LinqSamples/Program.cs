@@ -21,7 +21,7 @@ var customersByRevenue =
 Print("Customers by Revenue", customersByRevenue);
 
 customers
-    .Where(c => c.Revenue > 1_000_000)
+    .Where((Customer c) => c.Revenue > 1_000_000)
     .OrderByDescending(c => c.Revenue)
     .Select(c => c);
 

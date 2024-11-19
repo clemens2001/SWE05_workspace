@@ -40,9 +40,7 @@ textWriter.WriteLine();
 textWriter.WriteLine("Persons in Hagenberg");
 textWriter.WriteLine("=====================================================");
 textWriter.WriteLine("=====================================================");
-//
-// TODO
-//
+personRepository.FindPersonsByCity("Hagenberg").ForEach(textWriter.WriteLine);
 
 //textWriter.WriteLine();
 //textWriter.WriteLine("=====================================================");
