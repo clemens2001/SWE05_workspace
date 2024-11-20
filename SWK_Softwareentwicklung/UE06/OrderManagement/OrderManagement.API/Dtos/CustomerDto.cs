@@ -1,19 +1,24 @@
-﻿using OrderManagement.Domain;
+﻿using System.Text.Json.Serialization;
+using OrderManagement.Domain;
 
 namespace OrderManagement.API.Dtos
 {
     public record CustomerDto
     {
-        public Guid Id { get; set; }
+        //[JsonRequired]
+        public required Guid Id { get; set; }
 
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
-        public int ZipCode { get; set; }
+        public required int ZipCode { get; set; }
 
-        public string City { get; set; }
+        //[JsonPropertyName("location")]
+        public required string City { get; set; }
 
-        public Rating Rating { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public required Rating Rating { get; set; }
 
+        //[JsonIgnore]
         public decimal TotalRevenue { get; set; }
     }
 }
