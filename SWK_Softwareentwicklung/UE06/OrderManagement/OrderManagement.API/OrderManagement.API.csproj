@@ -11,8 +11,4 @@
     <ProjectReference Include="..\OrderManagement.Logic\OrderManagement.Logic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
