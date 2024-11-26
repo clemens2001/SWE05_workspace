@@ -25,3 +25,24 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+## Keycloak Docker Command
+
+```docker run -p 8080:8080 -e KEYCLOAK_ADMIN=wea5admin -e KEYCLOAK_ADMIN_PASSWORD=wea5adminPass quay.io/keycloak/keycloak:26.0.5 start-dev```
+
+### Keycloak Setup
+
+http://localhost:8080
+
+1. neues Realm anlegen "wea5"
+2. neuen User anlegen "wea5user"
+3. Speichern und unter Credentials Passwort anlegen "wea5userPass" Temporary "off"
+4. Client anlegen "wea5-demo", "Implicit Flow" aktivieren, 
+Root Url "http://localhost:4200", Valid Redirect Urls "http://localhost:4200/*", 
+Web Origins "http://localhost:4200/*" und Save
+5. 
+
+## Passwort Identity Provider
+
+Filip Pointer fragen
