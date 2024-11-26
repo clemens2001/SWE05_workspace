@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { BookListItemComponent } from '../book-list-item/book-list-item.component';
 import { BookStoreService } from '../shared/book-store.service';
 import { RouterLink } from '@angular/router';
-import {BookStoreService} from '../shared/book-store.service';
-import {RouterLink} from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -23,13 +21,7 @@ export class BookListComponent implements OnInit {
   showDetailsEvent = output<Book>();
 
   constructor(private bookStoreService: BookStoreService) {}
-
-  ngOnInit(): void {
-    this.bookStoreService.getAll().subscribe({next: res => {
-      this.books = res;
-    }});
-  }
-
+  
   showDetails(book: Book) {
     this.showDetailsEvent.emit(book);
   }

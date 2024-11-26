@@ -34,7 +34,7 @@ export class BookDetailsComponent implements OnInit {
     // this.book = this.bookStoreService.getBookById(params['id']);
     //this.bookStoreService.getBookById(params['id']).subscribe(book => this.book = book);
     
-    this.route.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params => {
       this.bookStoreService.getBookById(params['id']).subscribe(book => this.book = book);
     });
   }

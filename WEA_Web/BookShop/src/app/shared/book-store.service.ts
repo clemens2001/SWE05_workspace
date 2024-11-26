@@ -20,11 +20,12 @@ export class BookStoreService {
   
   getAll(): Observable<Book[]> {
     return this.http.get<Book[]>(`${environment.server}/books`)
-    .pipe(map<any, Book[]>(res => res['books']), catchError(this.errorHandler));
+      .pipe(map<any, Book[]>(res => res['books']), catchError(this.errorHandler));
   }
 
   getBookById(id: string): Observable<Book> {
-    return of();
+    return this.http.get<Book>(`${environment.server}/book/${id}`)
+      .pipe(map<any, Book[]>(res => res.book), catchError(this.errorHandler));
   }
 
 }
