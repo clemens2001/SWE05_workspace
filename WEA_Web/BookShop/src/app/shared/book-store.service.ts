@@ -34,7 +34,7 @@ export class BookStoreService {
   }
 
   update(book: Book): Observable<any> {
-    return this.http.put(`${environment.server}/update/${book.isbn}`, book)
+    return this.http.put(`${environment.server}/update`, book)
       .pipe(catchError(this.errorHandler));
   }
 

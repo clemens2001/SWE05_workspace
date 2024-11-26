@@ -28,5 +28,9 @@ export const routes: Routes = [
     {
       path: 'admin',
       component: BookFormComponent,
+    },
+    {
+      path: 'adminR/:id',
+      component: BookRformComponent,
     }
 ];

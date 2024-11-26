@@ -41,7 +41,7 @@ export class BookRformComponent {
     this.myForm = this.fb.group({
       title: [this.book.title, Validators.required],
       id: this.book.id,
-      isbn: [this.book.isbn, isbnValidator],
+      isbn: [this.book.isbn, [Validators.required, isbnValidator()]],
       description: this.book.description,
       author: this.book.author,
       year: this.book.year,
@@ -61,7 +61,7 @@ export class BookRformComponent {
     } else {
       this.bs.save(book).subscribe(res => {
         this.book = new Book();
-        this.myForm.reset(this.book);
+        this.initForm()
       });
     }
   }
