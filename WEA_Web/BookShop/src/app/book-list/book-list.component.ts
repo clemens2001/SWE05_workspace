@@ -1,8 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, output, Output } from '@angular/core';
 import { Book } from '../shared/book';
+import { CommonModule } from '@angular/common';
 import { BookListItemComponent } from '../book-list-item/book-list-item.component';
-import {BookStoreService} from '../shared/book-store.service';
-import {RouterLink} from '@angular/router';
+import { BookStoreService } from '../shared/book-store.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'wea5-book-list',
@@ -12,21 +13,20 @@ import {RouterLink} from '@angular/router';
   styles: ``
 })
 export class BookListComponent implements OnInit {
-
   books: Book[] = [];
 
-  @Output() showDetailsEvent = new EventEmitter<Book>();
+  showDetailsEvent = output<Book>();
 
-  constructor(public bookStoreService: BookStoreService) {
+  constructor(private bookStoreService: BookStoreService) {}
+
+  ngOnInit(): void {
+    this.bookStoreService.getAll().subscribe({next: res => {
+      this.books = res;
+    }});
   }
 
   showDetails(book: Book) {
     this.showDetailsEvent.emit(book);
-  }
-
-  ngOnInit(): void {
-    //this.books = this.bookStoreService.getAll();
-    this.bookStoreService.getAll().subscribe(books => this.books = books);
   }
 
 }

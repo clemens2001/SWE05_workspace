@@ -1,5 +1,7 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { Book } from '../shared/book';
+import { DomSanitizer } from '@angular/platform-browser';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'a.wea5-book-list-item',
@@ -9,7 +11,13 @@ import { Book } from '../shared/book';
   styles: ``
 })
 export class BookListItemComponent {
-  //@Input() book: Book = new Book();
+
   book = input.required<Book>();
+
+  constructor(private sanitizer: DomSanitizer) { }
+
+  imageUrl() {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(`${environment.images}/${this.book().picture}`)
+  }
 
 }

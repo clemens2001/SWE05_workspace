@@ -1,18 +1,26 @@
-<!--@defer{
-  @if(listOn) {
-    <wea5-book-list (showDetailsEvent)="showDetails($event)" />
-  }
-  @if(detailsOn) {
-    <wea5-book-details [book]="book" (showListEvent)="showList()"/>
-  }
-}@placeholder (minimum 500ms) {
-  <div class="ui active inverted dimmer">
-    <div class="ui text loader large">Loading ...</div>
-  </div>
-}-->
+<!-- @defer {
+  <wea5-book-list />
+} @placeholder (minimum 1s) {
+    <div class="ui active inverted dimmer">
+      <div class="ui text loader large">Lade BookShop ....</div>
+    </div> 
+} -->
 
-<div class="ui two item tabs menu">
-  <a routerLink="home" routerLinkActive="active" class="item" >Home</a>
-  <a routerLink="books" routerLinkActive="active" class="item" >Bücher</a>
+<!-- @if (listOn) {
+  <wea5-book-list
+  (showDetailsEvent)="showDetails($event)"> </wea5-book-list>
+}
+
+@if (detailsOn) {
+  <wea5-book-details
+  (showListEvent)="showList()" [book]="book"></wea5-book-details>
+}
+ -->
+
+<div class="ui three item tabs menu">
+  <a routerLink="home"  routerLinkActive="active" class="item">Home</a>
+  <a routerLink="books" routerLinkActive="active" class="item">Bücher</a>
+  <a routerLink="admin" routerLinkActive="active" class="item">Admin</a>
 </div>
+
 <router-outlet />

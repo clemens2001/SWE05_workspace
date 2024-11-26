@@ -1,0 +1,97 @@
+<h1>Buchformular</h1>
+<form class="ui large form"
+       >
+
+  <div class="field">
+    <label>Buchtitel</label>
+    <input
+      name="title"
+
+	    pattern="[a-zA-Z-:,?!äöü ]*"
+      required>
+    @if (errors['title']) {
+        <div class="ui negative message">
+        {{ errors['title'] }}
+        </div>
+    }
+  </div>
+
+  <div class="field">
+    <label>Autor</label>
+    <input
+      name="author"
+
+	  pattern="[a-zA-Zäöü ]*"
+      required>
+    @if (errors['author']) {  
+        <div class="ui negative message">
+        {{ errors['author'] }}
+        </div>
+    }
+    </div>
+
+  <div class="field">
+    <label>Erscheinungsdatum</label>
+    <input
+      type="date"
+      name="year"
+
+      useValueAsDate
+      required>
+    @if (errors['year']) {  
+        <div class="ui negative message">
+        {{ errors['year'] }}
+        </div>
+    }
+  </div>
+  
+  <div class="field">
+    <label>Verlag</label>
+    <input
+      name="publisher"
+
+	  pattern="[a-zA-Zäöü ]*"
+      required>
+    @if (errors['publisher']) {  
+        <div class="ui negative message">
+        {{ errors['publisher'] }}
+        </div>
+    }
+  </div>
+ 
+  <div class="field">
+    <label>Preis</label>
+    <input
+      name="price"
+
+	  pattern="[0-9]*,[0-9]*"
+      required
+      >
+    @if (errors['price']) {  
+        <div class="ui negative message">
+        {{ errors['price'] }}
+        </div>
+    }
+  </div>
+  <div class="field">
+    <label>ISBN</label>
+    <input
+      name="isbn"
+
+      required />
+    @if (errors['isbn']) {   
+        <div class="ui negative message">
+        {{ errors['isbn'] }}
+        </div>
+    }
+  </div>
+  <div class="field">
+    <label>Beschreibung</label>
+    <textarea
+      name="description"
+
+      rows="3"></textarea>
+  </div>
+
+  <button type="submit" class="ui button">Speichern</button>
+</form>
