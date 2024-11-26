@@ -16,16 +16,16 @@ import { OAuthService } from 'angular-oauth2-oidc';
 })
 export class AppComponent {
   title = 'BookShop';
-  
+
   listOn = true;
   detailsOn = false;
   book: Book = new Book();
-  
+
   showList() {
     this.listOn = true;
     this.detailsOn = false;
   }
-  
+
   showDetails(book: Book) {
     this.book = book;
     this.listOn = false;
@@ -33,7 +33,7 @@ export class AppComponent {
   }
 
   constructor(private oauthService: OAuthService) {
-    // this.configureWithNewConfigApi();
+    this.configureWithNewConfigApi();
   }
 
   private configureWithNewConfigApi() {
