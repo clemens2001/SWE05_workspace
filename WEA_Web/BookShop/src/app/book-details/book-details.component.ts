@@ -15,7 +15,17 @@ import { environment } from '../../environments/environment';
 })
 export class BookDetailsComponent implements OnInit {
 
-  book = new Book();
+  book = signal(new Book);  //new Book();
+  shoppingCart = signal<Array<Book>>([]);
+  totalPrice = computed(() => {
+    let sum = 0.0;
+    for (const book of this.shoppingCart()) {
+      if(book.price) {
+        sum += Number(book.price);
+      }
+    }
+    return sum;
+  });
   showListEvent = output();
 
 
@@ -26,7 +36,7 @@ export class BookDetailsComponent implements OnInit {
   ) { }
 
   imageUrl() {
-      return this.sanitizer.bypassSecurityTrustResourceUrl(`${environment.images}/${this.book.picture}`)
+      return this.sanitizer.bypassSecurityTrustResourceUrl(`${environment.images}/${this.book().picture}`)
   }
 
   ngOnInit(): void {
@@ -35,7 +45,7 @@ export class BookDetailsComponent implements OnInit {
     //this.bookStoreService.getBookById(params['id']).subscribe(book => this.book = book);
 
     this.activatedRoute.params.subscribe(params => {
-      this.bookStoreService.getBookById(params['id']).subscribe(book => this.book = book);
+      this.bookStoreService.getBookById(params['id']).subscribe(book => this.book.set(book));
     });
   }
 
@@ -46,7 +56,8 @@ export class BookDetailsComponent implements OnInit {
   addToShoppingCart() {
     const data = localStorage.getItem('WEA5.shoppingCart') || '[]';
     const item = JSON.parse(data);
-    item.push(this.book.id);
+    item.push(this.book().id);
+    this.shoppingCart.set([this.book(), ...this.shoppingCart()]);
     localStorage.setItem('WEA5.shoppingCart', JSON.stringify(item));
   }
 

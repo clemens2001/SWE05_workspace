@@ -1,38 +1,38 @@
-@if (book) {
+@if (book()) {
     <div class="ui grid">
         <div class="four wide column">
 
         </div>
         <div class="eight wide column">
-          <h1 class="ui header">{{ book.title }}</h1>
-          <h3 class="ui header">{{ book.author }}</h3>
+          <h1 class="ui header">{{ book().title }}</h1>
+          <h3 class="ui header">{{ book().author }}</h3>
           <div class="ui divider"></div>
           <div class="ui grid">
             <div class="four wide column">
               <h4 class="ui header">Preis</h4>
-              {{ book.price }}
+              {{ book().price }}
             </div>
             <div class="four wide column">
               <h4 class="ui header">Erschienen</h4>
-              {{ book.year }}
+              {{ book().year }}
             </div>
             <div class="four wide column">
               <h4 class="ui header">ISBN</h4>
-              {{ book.isbn }}
+              {{ book().isbn }}
             </div>
           </div>
         </div>
         <div class="sixteen wide column">
           <h3 class="ui header">Beschreibung</h3>
-          {{ book.description }}
+          {{ book().description }}
         </div>
       </div>
 
       <button (click)="showBookList()" class="ui red button">Zurück zur Buchliste</button>
 
-      @if (book) {
+      @if (book()) {
         <a class="ui tiny yellow labeled icon button"
-          [routerLink]="['../../adminR', book.id]">
+          [routerLink]="['../../adminR', book().id]">
           <i class="write icon"></i> Buch bearbeiten
         </a>
       }
@@ -40,6 +40,6 @@
       <button (click)="addToShoppingCart()" class="ui tiny green labeled icon button">
         <i class="shop icon"></i> In den Warenkorb legen
       </button>
-
+      (Currently {{totalPrice()}} € in Warenkorb)
 
 }
