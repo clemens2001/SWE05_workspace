@@ -19,6 +19,7 @@ import { Book } from '../shared/book';
       </a>
     </div>
 
+    <wea5-search (bookSelected)="bookSelected($event)" class="column"></wea5-search>
     </div>
   `,
   styles: ``

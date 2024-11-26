@@ -33,7 +33,7 @@ export class BookDetailsComponent implements OnInit {
         //const params = this.route.snapshot.params;
     // this.book = this.bookStoreService.getBookById(params['id']);
     //this.bookStoreService.getBookById(params['id']).subscribe(book => this.book = book);
-    
+
     this.activatedRoute.params.subscribe(params => {
       this.bookStoreService.getBookById(params['id']).subscribe(book => this.book = book);
     });
@@ -43,5 +43,11 @@ export class BookDetailsComponent implements OnInit {
     this.router.navigateByUrl('/books');
   }
 
+  addToShoppingCart() {
+    const data = localStorage.getItem('WEA5.shoppingCart') || '[]';
+    const item = JSON.parse(data);
+    item.push(this.book.id);
+    localStorage.setItem('WEA5.shoppingCart', JSON.stringify(item));
+  }
 
 }

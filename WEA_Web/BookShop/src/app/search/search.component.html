@@ -1,11 +1,12 @@
 <div class="ui search" [ngClass]="{ loading: isLoading }">
 	<div class="ui icon input">
-	  <!-- TODO -->
+	  <input type="text" class="prompt" placeholder="Suche..."
+          #searchTerm (keyup)="keyUp.emit(searchTerm.value)" />
 	  <i class="search icon"></i>
 	</div>
 	<div class="results transition" [ngClass]="{ visible: foundBooks.length }">
 
-     @for (book of foundBooks; track book.id) {   
+     @for (book of foundBooks; track book.id) {
 	  <a href (click)="bookSelected.emit(book); false" class="result">
 		<div class="content">
 		  <div class="title" >{{ book.title }}</div>

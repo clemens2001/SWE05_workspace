@@ -16,11 +16,18 @@ export class SearchComponent {
   constructor(private bs: BookStoreService) { }
 
   isLoading: boolean = false;
-  foundBooks: Book[] = []; 
+  foundBooks: Book[] = [];
   bookSelected = output<Book>();
-  
-  ngOnInit() {
+  keyUp = new EventEmitter<string>();
 
+  ngOnInit() {
+    this.keyUp.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      tap(() => this.isLoading = true),
+      switchMap(searchTerm => this.bs.search(searchTerm)),
+      tap(() => this.isLoading = false)
+    ).subscribe(books => this.foundBooks = books);
   }
 
 }

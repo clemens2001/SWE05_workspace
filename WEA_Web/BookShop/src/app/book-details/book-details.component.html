@@ -27,7 +27,7 @@
           {{ book.description }}
         </div>
       </div>
-      
+
       <button (click)="showBookList()" class="ui red button">Zurück zur Buchliste</button>
 
       @if (book) {
@@ -36,6 +36,10 @@
           <i class="write icon"></i> Buch bearbeiten
         </a>
       }
+
+      <button (click)="addToShoppingCart()" class="ui tiny green labeled icon button">
+        <i class="shop icon"></i> In den Warenkorb legen
+      </button>
 
 
 }

@@ -38,4 +38,9 @@ export class BookStoreService {
       .pipe(catchError(this.errorHandler));
   }
 
+  search(searchTerm: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${environment.server}/search/${searchTerm}`)    // nicht so: urlencoding besser hier zb. /search?searchTerm=...
+      .pipe(retry(3), map((res: any) => res.books), catchError(this.errorHandler));
+  }
+
 }
