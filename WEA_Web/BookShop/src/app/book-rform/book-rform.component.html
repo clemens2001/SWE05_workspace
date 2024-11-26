@@ -1,11 +1,13 @@
 <h1>Buchformular</h1>
 <form class="ui large form"
-      >
+      [formGroup]="myForm"
+      (ngSubmit)="submitForm()">
 
   <div class="field">
     <label>Buchtitel</label>
     <input
       name="title"
+      formControlName="title"
       >
     @if (errors['title']) {
         <div class="ui negative message">
@@ -18,8 +20,9 @@
     <label>Autor</label>
     <input
       name="author"
+      formControlName="author"
       >
-    @if (errors['author']) {  
+    @if (errors['author']) {
         <div class="ui negative message">
         {{ errors['author'] }}
         </div>
@@ -30,32 +33,35 @@
     <label>Erscheinungsdatum</label>
     <input
       name="year"
+      formControlName="year"
       >
-    @if (errors['year']) {  
+    @if (errors['year']) {
         <div class="ui negative message">
         {{ errors['year'] }}
         </div>
     }
   </div>
-  
+
   <div class="field">
     <label>Verlag</label>
     <input
       name="publisher"
+      formControlName="publisher"
       >
-    @if (errors['publisher']) {  
+    @if (errors['publisher']) {
         <div class="ui negative message">
         {{ errors['publisher'] }}
         </div>
     }
   </div>
- 
+
   <div class="field">
     <label>Preis</label>
     <input
       name="price"
+      formControlName="price"
       >
-    @if (errors['price']) {  
+    @if (errors['price']) {
         <div class="ui negative message">
         {{ errors['price'] }}
         </div>
@@ -65,8 +71,9 @@
     <label>ISBN</label>
     <input
       name="isbn"
+      formControlName="isbn"
       />
-    @if (errors['isbn']) {   
+    @if (errors['isbn']) {
         <div class="ui negative message">
         {{ errors['isbn'] }}
         </div>
@@ -76,9 +83,9 @@
     <label>Beschreibung</label>
     <textarea
       name="description"
-
+      formControlName="description"
       rows="3"></textarea>
   </div>
 
-  <button type="submit" class="ui button">Speichern</button>
+  <button type="submit" [disabled]="myForm.invalid" class="ui button">Speichern</button>
 </form>

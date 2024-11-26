@@ -1,18 +1,19 @@
 <h1>Buchformular</h1>
 <form class="ui large form"
-       >
+      #myForm="ngForm"
+      (ngSubmit)="submitForm()">
 
   <div class="field">
     <label>Buchtitel</label>
     <input
       name="title"
-
-	    pattern="[a-zA-Z-:,?!äöü ]*"
+      [(ngModel)]="book.title"
+      pattern="[a-zA-Z-:,?!äöü ]*"
       required>
     @if (errors['title']) {
-        <div class="ui negative message">
+      <div class="ui negative message">
         {{ errors['title'] }}
-        </div>
+      </div>
     }
   </div>
 
@@ -20,78 +21,78 @@
     <label>Autor</label>
     <input
       name="author"
-
-	  pattern="[a-zA-Zäöü ]*"
+      [(ngModel)]="book.author"
+      pattern="[a-zA-Zäöü ]*"
       required>
-    @if (errors['author']) {  
-        <div class="ui negative message">
+    @if (errors['author']) {
+      <div class="ui negative message">
         {{ errors['author'] }}
-        </div>
+      </div>
     }
-    </div>
+  </div>
 
   <div class="field">
     <label>Erscheinungsdatum</label>
     <input
       type="date"
       name="year"
-
+      [(ngModel)]="book.year"
       useValueAsDate
       required>
-    @if (errors['year']) {  
-        <div class="ui negative message">
+    @if (errors['year']) {
+      <div class="ui negative message">
         {{ errors['year'] }}
-        </div>
+      </div>
     }
   </div>
-  
+
   <div class="field">
     <label>Verlag</label>
     <input
       name="publisher"
-
-	  pattern="[a-zA-Zäöü ]*"
+      [(ngModel)]="book.publisher"
+      pattern="[a-zA-Zäöü ]*"
       required>
-    @if (errors['publisher']) {  
-        <div class="ui negative message">
+    @if (errors['publisher']) {
+      <div class="ui negative message">
         {{ errors['publisher'] }}
-        </div>
+      </div>
     }
   </div>
- 
+
   <div class="field">
     <label>Preis</label>
     <input
       name="price"
-
-	  pattern="[0-9]*,[0-9]*"
+      [(ngModel)]="book.price"
+      pattern="[0-9]*,[0-9]*"
       required
-      >
-    @if (errors['price']) {  
-        <div class="ui negative message">
+    >
+    @if (errors['price']) {
+      <div class="ui negative message">
         {{ errors['price'] }}
-        </div>
+      </div>
     }
   </div>
   <div class="field">
     <label>ISBN</label>
     <input
       name="isbn"
-
-      required />
-    @if (errors['isbn']) {   
-        <div class="ui negative message">
+      [(ngModel)]="book.isbn"
+      required/>
+    @if (errors['isbn']) {
+      <div class="ui negative message">
         {{ errors['isbn'] }}
-        </div>
+      </div>
     }
   </div>
   <div class="field">
     <label>Beschreibung</label>
     <textarea
       name="description"
-
+      [(ngModel)]="book.description"
       rows="3"></textarea>
   </div>
 
-  <button type="submit" class="ui button">Speichern</button>
+  <button type="submit" [disabled]="myForm.invalid" class="ui button">Speichern</button>
 </form>

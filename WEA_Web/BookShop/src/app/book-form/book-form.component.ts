@@ -26,8 +26,13 @@ export class BookFormComponent {
   }
 
   submitForm() {
+    this.book.author = this.myForm.value.title;
 
-  } 
+    this.bs.save(this.book).subscribe(res => {
+      this.book = new Book();
+      this.myForm.reset(this.book);
+    });
+  }
 
   updateErrorMessages() {
       this.errors = {};

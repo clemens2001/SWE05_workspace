@@ -29,21 +29,40 @@ export class BookRformComponent {
     const id = this.route.snapshot.params['id'];
     if (id) {
       this.isUpdatingBook = true;
-      // TODO load book
+      this.bs.getBookById(id).subscribe(book => {
+        this.book = book;
+        this.initForm();
+      });
     }
     this.initForm();
   }
 
   initForm() {
+    this.myForm = this.fb.group({
+      title: [this.book.title, Validators.required],
+      id: this.book.id,
+      isbn: [this.book.isbn, isbnValidator],
+      description: this.book.description,
+      author: this.book.author,
+      year: this.book.year,
+      price: this.book.price,
+      picture: this.book.picture,
+    });
 
     this.myForm.statusChanges.subscribe(() => this.updateErrorMessages());
   }
 
   submitForm() {
+    const book = this.myForm.value;
     if (this.isUpdatingBook) {
-      // TODO Update
+      this.bs.update(book).subscribe(res => {
+        this.router.navigate(['../../books', book.id], { relativeTo: this.route });
+      });
     } else {
-      // TODO Save
+      this.bs.save(book).subscribe(res => {
+        this.book = new Book();
+        this.myForm.reset(this.book);
+      });
     }
   }
 
