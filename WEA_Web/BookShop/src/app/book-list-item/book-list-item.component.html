@@ -1,4 +1,7 @@
 
+@if (book().picture) {
+    <img class="ui tiny image" [src]="imageUrl()" alt="{{ book().title }}" />
+}
 
 <div class="content">
     <div class="header">{{ book().title }}</div>

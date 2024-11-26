@@ -1,7 +1,9 @@
 @if (book()) {
     <div class="ui grid">
         <div class="four wide column">
-
+          @if(book().picture) {
+            <img class="ui large image" [src]="imageUrl()" alt="{{ book().title }}" />
+          }
         </div>
         <div class="eight wide column">
           <h1 class="ui header">{{ book().title }}</h1>
