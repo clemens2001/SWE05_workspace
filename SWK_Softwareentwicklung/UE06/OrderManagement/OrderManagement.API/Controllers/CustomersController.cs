@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using OrderManagement.Api.BackgroundServices;
 using OrderManagement.Api.Controllers;
 using OrderManagement.API.Dtos;
 using OrderManagement.API.Mapperly;
@@ -16,10 +17,16 @@ namespace OrderManagement.API.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly IOrderManagementLogic logic;
-        public CustomersController(IOrderManagementLogic orderManagementLogic)
+        private readonly UpdateChannel updateChannel;
+
+        public CustomersController(
+            IOrderManagementLogic orderManagementLogic,
+            UpdateChannel updateChannel)
         {
             logic = orderManagementLogic 
                     ?? throw new ArgumentNullException(nameof(orderManagementLogic));
+            this.updateChannel = updateChannel
+                    ?? throw new ArgumentNullException(nameof(updateChannel));
         }
 
 
@@ -99,6 +106,28 @@ namespace OrderManagement.API.Controllers
             } else {
                 return NotFound();
             }
+        }
+
+        // Update customer totals
+        // POST: <base-url>/api/Customers/<GUID>/totals
+        [HttpPost("{customerId}/totals")]
+        public async Task<ActionResult> UpdateCustomerTotals(
+            Guid customerId, 
+            CancellationToken cancellationToken)
+        {
+            if(!await logic.CustomerExistsAsync(customerId)) {
+                return NotFound(StatusInfo.InvalidCustomerId(customerId));
+            }
+
+            if(await updateChannel.AddUpdateTaskAsync(customerId, cancellationToken)) {
+                return Accepted();
+            }
+
+            return BadRequest(new ProblemDetails()
+            {
+                Title ="Operation cancelled",
+                Detail = "Update customer totals cancelled"
+            });
         }
 
     }

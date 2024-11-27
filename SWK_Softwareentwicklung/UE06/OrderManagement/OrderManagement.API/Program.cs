@@ -1,11 +1,16 @@
 using System.Text.Json;
+using OrderManagement.Api.BackgroundServices;
+using OrderManagement.API.HostedServices;
 using OrderManagement.Logic;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddCors(builder =>
-    builder.AddDefaultPolicy(policy => 
+builder.Services.AddHostedService<QueuedUpdateService>();
+builder.Services.AddSingleton<UpdateChannel>();
+
+builder.Services.AddCors(b =>
+    b.AddDefaultPolicy(policy => 
         policy.AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader()));
