@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using OrderManagement.Api.Controllers;
 using OrderManagement.API.Dtos;
 using OrderManagement.API.Mapperly;
 using OrderManagement.Domain;
@@ -9,6 +10,7 @@ using OrderManagement.Logic;
 namespace OrderManagement.API.Controllers
 {
 
+    [ApiConventionType(typeof(WebApiConventions))]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase
@@ -38,10 +40,6 @@ namespace OrderManagement.API.Controllers
         }
 
         // GET: <base-url>/api/Customers/<GUID>
-        [ProducesDefaultResponseType]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{customerId}")]
         public async Task<ActionResult<CustomerDto>> GetCustomerById([FromRoute] Guid customerId)     // [FromRoute] is optional
         {
