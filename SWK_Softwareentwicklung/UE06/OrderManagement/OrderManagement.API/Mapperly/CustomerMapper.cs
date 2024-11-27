@@ -12,5 +12,8 @@ namespace OrderManagement.API.Mapperly
 
         [MapperIgnoreTarget(nameof(Customer.TotalRevenue))]
         public static partial Customer ToEntity(this CustomerForCreationDto customer);
+
+        [MapperIgnoreTarget(nameof(Customer.TotalRevenue))]
+        public static partial void UpdateCustomer(this CustomerForUpdateDto customerForUpdateDto, Customer customer);
     }
 }

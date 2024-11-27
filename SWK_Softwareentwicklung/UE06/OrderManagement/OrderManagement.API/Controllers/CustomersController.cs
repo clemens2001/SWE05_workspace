@@ -66,5 +66,38 @@ namespace OrderManagement.API.Controllers
                 customerDomain.ToDto());
         }
 
+
+        // UpdateCustomer
+        // PUT: <base-url>/api/Customers/<GUID>
+        [HttpPut("{customerId}")]
+        public async Task<ActionResult> UpdateCustomer(
+            [FromRoute] Guid customerId, 
+            [FromBody] CustomerForUpdateDto customerDto)
+        {
+            Customer? customer = await logic.GetCustomerAsync(customerId);
+
+            if (customer is null)
+            {
+                return NotFound();
+            }
+
+            customerDto.UpdateCustomer(customer);
+            await logic.UpdateCustomerAsync(customer);
+            return NoContent();
+        }
+
+        // DeleteCustomer
+        // DELETE: <base-url>/api/Customers/<GUID>
+
+        [HttpDelete("{customerId}")]
+        public async Task<ActionResult> DeleteCustomer([FromRoute] Guid customerId)
+        {
+            if(await logic.DeleteCustomerAsync(customerId)) {
+                return NoContent();
+            } else {
+                return NotFound();
+            }
+        }
+
     }
 }
