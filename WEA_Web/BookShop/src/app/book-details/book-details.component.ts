@@ -36,7 +36,7 @@ export class BookDetailsComponent implements OnInit {
   ) { }
 
   imageUrl() {
-      return this.sanitizer.bypassSecurityTrustResourceUrl(`${environment.images}/${this.book().picture}`)
+    return this.sanitizer.bypassSecurityTrustResourceUrl(`${environment.images}/${this.book().picture}`)
   }
 
   ngOnInit(): void {

@@ -16,5 +16,15 @@ namespace OrderManagement.API.Mapping
                 TotalRevenue = customer.TotalRevenue
             };
         }
+
+        public static Customer ToCustomer(this CustomerDto customerDto)
+        {
+            return new Customer(
+                id: customerDto.Id,
+                name: customerDto.Name,
+                zipCode: customerDto.ZipCode,
+                city: customerDto.City,
+                rating: customerDto.Rating);
+        }
     }
 }

@@ -18,8 +18,9 @@ builder.Services.AddControllers(options => options.ReturnHttpNotAcceptable = tru
 
 // bei jedem Request wird eine neue Instanz erstellt
 // es wird ein scope erstellt, der für die gesamte Requestdauer gültig ist
-builder.Services.AddScoped<IOrderManagementLogic, OrderManagementLogic>();   
+builder.Services.AddScoped<IOrderManagementLogic, OrderManagementLogic>();
 
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 var app = builder.Build();
 

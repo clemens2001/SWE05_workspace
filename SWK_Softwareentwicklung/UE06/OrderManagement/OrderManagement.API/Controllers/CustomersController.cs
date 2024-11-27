@@ -48,5 +48,22 @@ namespace OrderManagement.API.Controllers
             return Ok(customer.ToDto());
         }
 
+        // CreateCustomer
+        // POST: <base-url>/api/Customers
+        [HttpPost]
+        public async Task<ActionResult<CustomerDto>> CreateCustomer([FromBody] CustomerDto customer)     // [FromBody] is optional
+        {
+            if(customer.Id != Guid.Empty &&
+               await logic.CustomerExistsAsync(customer.Id))
+            {
+                return Conflict();
+            }
+            Customer customerDomain = customer.ToCustomer();
+            await logic.AddCustomerAsync(customerDomain);
+            return CreatedAtAction(
+                nameof(GetCustomerById),
+                new { customerId = customerDomain.Id },
+                customerDomain.ToDto());
+        }
     }
 }
