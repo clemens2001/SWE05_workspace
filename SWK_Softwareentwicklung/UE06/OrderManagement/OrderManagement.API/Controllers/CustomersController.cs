@@ -38,12 +38,16 @@ namespace OrderManagement.API.Controllers
         }
 
         // GET: <base-url>/api/Customers/<GUID>
+        [ProducesDefaultResponseType]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{customerId}")]
         public async Task<ActionResult<CustomerDto>> GetCustomerById([FromRoute] Guid customerId)     // [FromRoute] is optional
         {
             var customer = await logic.GetCustomerAsync(customerId);
             if(customer is null) {
-                return NotFound();
+                return NotFound(StatusInfo.InvalidCustomerId(customerId));
             }
             return Ok(customer.ToDto());
         }
@@ -56,7 +60,7 @@ namespace OrderManagement.API.Controllers
             if(customer.Id != Guid.Empty &&
                await logic.CustomerExistsAsync(customer.Id))
             {
-                return Conflict();
+                return Conflict(StatusInfo.CustomerAlreadyExists(customer.Id));
             }
             Customer customerDomain = customer.ToEntity();
             await logic.AddCustomerAsync(customerDomain);
@@ -78,7 +82,7 @@ namespace OrderManagement.API.Controllers
 
             if (customer is null)
             {
-                return NotFound();
+                return NotFound(StatusInfo.InvalidCustomerId(customerId));
             }
 
             customerDto.UpdateCustomer(customer);
