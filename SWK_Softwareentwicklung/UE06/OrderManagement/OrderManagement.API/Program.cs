@@ -4,6 +4,11 @@ using OrderManagement.Logic;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(builder =>
+    builder.AddDefaultPolicy(policy => 
+        policy.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()));
 
 builder.Services.AddControllers(options => options.ReturnHttpNotAcceptable = true)
     .AddJsonOptions(options =>
@@ -25,7 +30,7 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
+app.UseCors();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 

@@ -1,4 +1,4 @@
-﻿const ORDER_MANAGEMENT_BASE_URI = "https://localhost:7148";
+﻿const ORDER_MANAGEMENT_BASE_URI = "https://localhost:7278";
 
 interface Customer {
   id:      string;
