@@ -27,6 +27,8 @@ builder.Services.AddScoped<IOrderManagementLogic, OrderManagementLogic>();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
+builder.Services.AddOpenApiDocument(settings => settings.Title = "Order Management API");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,5 +37,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseOpenApi();
+app.UseSwaggerUi(settings => settings.Path = "/swagger");
+app.UseReDoc(app => app.Path = "/redoc");
 
 app.Run();
