@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OrderManagement.API.Dtos
 {
-    public record CustomersForCreationDto
+    public record CustomerForCreationDto
     {
         public Guid Id { get; set; }
 

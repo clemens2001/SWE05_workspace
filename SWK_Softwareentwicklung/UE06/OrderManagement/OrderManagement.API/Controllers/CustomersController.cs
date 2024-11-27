@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using OrderManagement.API.Dtos;
-using OrderManagement.API.Mapping;
+using OrderManagement.API.Mapperly;
 using OrderManagement.Domain;
 using OrderManagement.Logic;
 
@@ -29,11 +29,11 @@ namespace OrderManagement.API.Controllers
         {
             if (rating is null)
             {
-                return (await logic.GetCustomersAsync()).Select(c => c.ToDto());
+                return (await logic.GetCustomersAsync()).ToDtoEnumeration();
             }
             else
             {
-                return (await logic.GetCustomersByRatingAsync(rating.Value)).Select(c => c.ToDto());
+                return (await logic.GetCustomersByRatingAsync(rating.Value)).ToDtoEnumeration();
             }
         }
 
@@ -51,19 +51,20 @@ namespace OrderManagement.API.Controllers
         // CreateCustomer
         // POST: <base-url>/api/Customers
         [HttpPost]
-        public async Task<ActionResult<CustomerDto>> CreateCustomer([FromBody] CustomerDto customer)     // [FromBody] is optional
+        public async Task<ActionResult<CustomerDto>> CreateCustomer([FromBody] CustomerForCreationDto customer)     // [FromBody] is optional
         {
             if(customer.Id != Guid.Empty &&
                await logic.CustomerExistsAsync(customer.Id))
             {
                 return Conflict();
             }
-            Customer customerDomain = customer.ToCustomer();
+            Customer customerDomain = customer.ToEntity();
             await logic.AddCustomerAsync(customerDomain);
             return CreatedAtAction(
                 nameof(GetCustomerById),
                 new { customerId = customerDomain.Id },
                 customerDomain.ToDto());
         }
+
     }
 }
