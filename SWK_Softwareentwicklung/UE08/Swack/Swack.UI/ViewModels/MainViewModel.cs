@@ -1,25 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Swack.Logic;
 using Swack.Logic.Models;
 
 namespace Swack.UI.ViewModels
 {
     public class MainViewModel
     {
-        public IEnumerable<Channel> Channels { get; set; }
+        private readonly IMessagingLogic messagingLogic;
+
+        public ObservableCollection<ChannelViewModel> Channels { get; private set; } = [];
+
+        public ChannelViewModel? CurrentChannel { get; set; }
 
         // ctor TAB
-        public MainViewModel()
+        public MainViewModel(IMessagingLogic messagingLogic)
         {
-            Channels = new List<Channel>()
-            {
-                new("#swk"),
-                new("#fun"),
-                new("#kurztest"),
-            };
+            this.messagingLogic = messagingLogic ?? throw new ArgumentNullException(nameof(messagingLogic));
+
+        }
+
+        public async Task InitializeAsync()
+        {
+            foreach(var channel in await messagingLogic.GetChannelsAsync()) {
+                Channels.Add(new ChannelViewModel(channel));
+            }
         }
 
     }

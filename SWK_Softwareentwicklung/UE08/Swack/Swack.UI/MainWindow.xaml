@@ -7,18 +7,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" MinWidth="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <ListBox BorderThickness="0"
-                 ItemsSource="{Binding Channels}">
+                 ItemsSource="{Binding Channels}"
+                 SelectedItem="{Binding CurrentChannel}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock FontSize="18" FontWeight="Bold" Margin="5"
-                               Text="{Binding Name}"/>
+                               Text="{Binding Channel.Name}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <TextBlock Text="{Binding CurrentChannel.Name}"
+        <GridSplitter VerticalAlignment="Stretch"
+                      HorizontalAlignment="Right"
+                      Width="2"
+                      Background="DarkGray"/>
+
+        <TextBlock Text="{Binding CurrentChannel.Channel.Name}"
                    FontSize="30"
-                   Margin="0, 15"/>
+                   Margin="0, 15" Grid.Column="1"/>
     </Grid>
 </Window>

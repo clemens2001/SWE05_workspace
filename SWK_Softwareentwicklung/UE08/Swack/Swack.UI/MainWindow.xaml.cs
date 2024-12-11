@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Swack.Logic;
 using Swack.Logic.Models;
 using Swack.UI.ViewModels;
 
@@ -18,17 +19,18 @@ namespace Swack.UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public IEnumerable<Channel> Channels { get; private set; }
-
-        public Channel? CurrentChannel { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
 
-            var viewModel = new MainViewModel();
+            var user = new User("czellinger", "https://robohash.org/clemens");
+            var logic = new SimulatedMessagingLogic(user);
 
+            var viewModel = new MainViewModel(logic);
             DataContext = viewModel;
+
+            Loaded += async (sender, e) => await viewModel.InitializeAsync();
         }
     }
 }
