@@ -76,10 +76,22 @@
                  SelectedItem="{Binding CurrentChannel}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock FontSize="18"
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="18"
                                FontWeight="Bold"
                                Margin="6"
                                Text="{Binding Channel.Name}" />
+                        <Border CornerRadius="4"
+                                Background="DarkGoldenrod"
+                                Padding="6, 3"
+                                Margin="8,0,0,0">
+                            <TextBlock Text="{Binding UnreadMessages}"
+                                   Foreground="White"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center"/>
+
+                        </Border>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

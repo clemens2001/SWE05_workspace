@@ -25,7 +25,7 @@ namespace Swack.UI
         {
             InitializeComponent();
 
-            var user = new User("pointex", "https://robohash.org/philipp");
+            var user = new User("pointex", "https://robohash.org/clemens");
 
             var logic = new SimulatedMessagingLogic(user);
 

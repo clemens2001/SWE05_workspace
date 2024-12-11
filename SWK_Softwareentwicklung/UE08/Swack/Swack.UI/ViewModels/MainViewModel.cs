@@ -12,11 +12,21 @@ namespace Swack.UI.ViewModels
     public class MainViewModel
     {
         private readonly IMessagingLogic messagingLogic;
+        private ChannelViewModel? currentChannel;
 
         public ObservableCollection<ChannelViewModel> Channels { get; private set; } = [];
 
 
-        public ChannelViewModel? CurrentChannel { get; set; }
+        public ChannelViewModel? CurrentChannel {
+            get => currentChannel;
+            set {
+                currentChannel = value;
+                if (currentChannel is not null) {
+                    currentChannel.UnreadMessages = 0;
+                }
+            }
+        }
+
         public MainViewModel(IMessagingLogic messagingLogic)
         {
             this.messagingLogic = messagingLogic ?? throw new ArgumentNullException(nameof(messagingLogic));
@@ -28,6 +38,10 @@ namespace Swack.UI.ViewModels
             var channel = Channels.FirstOrDefault(ch => ch.Channel.Name == message.Channel.Name);
 
             channel?.Messages.Add(message);
+
+            if(channel is not null && channel != CurrentChannel) {
+                channel.UnreadMessages++;
+            }
         }
 
         public async Task InitializeAsync() 
