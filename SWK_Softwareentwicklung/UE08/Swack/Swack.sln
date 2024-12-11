@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.11.35327.3
+VisualStudioVersion = 17.12.35521.163 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swack.UI", "Swack.UI\Swack.UI.csproj", "{66A80027-B0B6-4C93-8D34-8B5381349F4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swack.UI", "Swack.UI\Swack.UI.csproj", "{ABB13D82-CC50-4990-A133-F753BE97C8E1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swack.Logic", "Swack.Logic\Swack.Logic.csproj", "{C5045D53-D426-4C47-9804-7C07E745F149}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swack.Logic", "Swack.Logic\Swack.Logic.csproj", "{743D3B66-992D-4690-B206-69BD83B46B23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +13,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{66A80027-B0B6-4C93-8D34-8B5381349F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66A80027-B0B6-4C93-8D34-8B5381349F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66A80027-B0B6-4C93-8D34-8B5381349F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66A80027-B0B6-4C93-8D34-8B5381349F4C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5045D53-D426-4C47-9804-7C07E745F149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5045D53-D426-4C47-9804-7C07E745F149}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5045D53-D426-4C47-9804-7C07E745F149}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5045D53-D426-4C47-9804-7C07E745F149}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABB13D82-CC50-4990-A133-F753BE97C8E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABB13D82-CC50-4990-A133-F753BE97C8E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABB13D82-CC50-4990-A133-F753BE97C8E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABB13D82-CC50-4990-A133-F753BE97C8E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{743D3B66-992D-4690-B206-69BD83B46B23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{743D3B66-992D-4690-B206-69BD83B46B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{743D3B66-992D-4690-B206-69BD83B46B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{743D3B66-992D-4690-B206-69BD83B46B23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {002EC78A-E813-4800-9A23-E8723BF0EE09}
 	EndGlobalSection
 EndGlobal
