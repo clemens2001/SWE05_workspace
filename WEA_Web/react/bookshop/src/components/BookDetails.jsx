@@ -1,5 +1,5 @@
 ﻿import {useEffect, useState} from "react";
-import {getBookById, getBooks} from "../api/bookApi.js";
+import {baseUrl, getBookById, getBooks} from "../api/bookApi.js";
 import {useNavigate, useParams} from "react-router-dom";
 
 
@@ -13,7 +13,9 @@ function BookDetails(/*props*/) {
 
 
     useEffect(() => {
+        let isActive = true;
         getBookById(params.bookId).then(data => setBook(data.book));
+        return () => { isActive = false; }
     }, [params.bookId]);
 
     function onBackClick() {
@@ -28,6 +30,9 @@ function BookDetails(/*props*/) {
     return (
         <div>
             <div className="ui padded grid">
+                <div className="four wide column">
+                    <img className="ui large image" src={`${baseUrl}/${book.picture}`} alt="Book Cover" />
+                </div>
                 <div className="eight wide column">
                     <h1 className="ui header">{book.title}</h1>
                     <h3 className="ui header">{book.author}</h3>
