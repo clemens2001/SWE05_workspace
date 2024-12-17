@@ -1,19 +1,29 @@
 import BookListItem from "./BookListItem.jsx";
 import {getBooks} from "../api/bookApi.js";
 import {useEffect, useState} from "react";
+import {Navigate} from "react-router-dom";
 
 
 
 function BookList(props) {
-    const { onBookClick } = props;  // const onBookClick = props.onBookClick;
+    // const { onBookClick } = props;  // const onBookClick = props.onBookClick;
 
     // const books = getBooks();
     const [books, setBooks] = useState([]);
+    const [detailBookId, setDetailBookId] = useState(undefined);
 
     useEffect(() => {
         getBooks().then(data => setBooks(data.books));
     }, []); // empty array means that this effect will only run once after the first render
 
+
+    function onBookClick(book) {
+        setDetailBookId(book.id);
+    }
+
+    if(detailBookId) {
+        return <Navigate to={`/books/${detailBookId}`} />;
+    }
 
 /*    const bookItems = [];
     for (const book of books) {

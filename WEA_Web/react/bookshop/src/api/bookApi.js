@@ -18,7 +18,9 @@ function getBooks() {
 }
 
 function getBookById(id) {
-    return books.find(book => book.id === id);
+    // return books.find(book => book.id === id);
+    return fetch(`${baseUrl}/book/${id}`)
+        .then(response => response.json());
 }
 
 export { getBooks, getBookById };

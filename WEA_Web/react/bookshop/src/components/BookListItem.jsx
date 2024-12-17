@@ -2,6 +2,7 @@
 
 function BookListItem(props) {
     const book = props.theBook;
+
     return (
         <div className="content">
             <div className="header">{book.title}</div>

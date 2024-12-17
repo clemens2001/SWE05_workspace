@@ -1,9 +1,29 @@
-﻿
+﻿import {useEffect, useState} from "react";
+import {getBookById, getBooks} from "../api/bookApi.js";
+import {useNavigate, useParams} from "react-router-dom";
 
 
-function BookDetails(props) {
+function BookDetails(/*props*/) {
 
-    const { book, onBackClick } = props;
+    // const { book, onBackClick } = props;
+
+    const [book, setBook] = useState({});
+    const params = useParams();
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        getBookById(params.bookId).then(data => setBook(data.book));
+    }, [params.bookId]);
+
+    function onBackClick() {
+        navigate("/books");
+    }
+
+    if(!book) {
+        return <h1>Loading...</h1>;
+    }
+
 
     return (
         <div>

@@ -3,11 +3,17 @@ import BookList from './components/BookList';
 import BookDetails from "./components/BookDetails.jsx";
 import {useState} from "react";
 
-
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import Home from "./components/Home.jsx";
 
 function App() {
 
-  const [selectedBook, setSelectedBook] = useState(undefined);
+/*  const [selectedBook, setSelectedBook] = useState(undefined);
 
   function showDetails(book) {
     setSelectedBook(book);
@@ -22,12 +28,24 @@ function App() {
     content = <BookList onBookClick={showDetails}/>;
   } else {
     content = <BookDetails book={selectedBook} onBackClick={showList} />;
-  }
+  }*/
+
+
 
   return (
-      <div className="ui container">
-        {content}
-      </div>
+      <Router>
+        <div className="ui container">
+          <div className="ui two item tabs menu">
+            <Link to="/" className="item">Home</Link>
+            <Link to="/books" className="item">Books</Link>
+          </div>
+          <Routes>
+              <Route path="/books/:bookId" element={<BookDetails />} />
+              <Route path="/books" element={<BookList />} />
+              <Route path="/" element={<Home />} />
+          </Routes>
+        </div>
+      </Router>
   );
 }
 
