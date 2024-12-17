@@ -9,8 +9,12 @@
         price: 9.99, description: 'Description' },
 ];
 
+export const baseUrl = 'http://localhost:3200/bookshop-rest-service/api';
+
 function getBooks() {
-    return books;
+    // return books;
+    return fetch(`${baseUrl}/books`)
+        .then(response => response.json());
 }
 
 function getBookById(id) {

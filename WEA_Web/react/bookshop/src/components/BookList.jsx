@@ -1,12 +1,19 @@
 import BookListItem from "./BookListItem.jsx";
 import {getBooks} from "../api/bookApi.js";
+import {useEffect, useState} from "react";
 
 
 
 function BookList(props) {
     const { onBookClick } = props;  // const onBookClick = props.onBookClick;
 
-    const books = getBooks();
+    // const books = getBooks();
+    const [books, setBooks] = useState([]);
+
+    useEffect(() => {
+        getBooks().then(data => setBooks(data.books));
+    }, []); // empty array means that this effect will only run once after the first render
+
 
 /*    const bookItems = [];
     for (const book of books) {
