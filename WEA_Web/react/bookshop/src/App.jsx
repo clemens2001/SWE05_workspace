@@ -1,8 +1,37 @@
-import React from 'react';
 import './App.css';
 import BookList from './components/BookList';
 import BookDetails from "./components/BookDetails.jsx";
+import {useState} from "react";
 
+
+
+function App() {
+
+  const [selectedBook, setSelectedBook] = useState(undefined);
+
+  function showDetails(book) {
+    setSelectedBook(book);
+  }
+
+  function showList() {
+    setSelectedBook(undefined);
+  }
+
+  let content;
+  if (!selectedBook) {
+    content = <BookList onBookClick={showDetails}/>;
+  } else {
+    content = <BookDetails book={selectedBook} onBackClick={showList} />;
+  }
+
+  return (
+      <div className="ui container">
+        {content}
+      </div>
+  );
+}
+
+/*
 class App extends React.Component {
 
   constructor(props) {
@@ -37,5 +66,6 @@ class App extends React.Component {
     );
   }
 }
+*/
 
 export default App
