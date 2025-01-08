@@ -1,10 +1,13 @@
 using CurrencyConverter.Blazor.Components;
+using CurrencyConverter.Logic;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddScoped<ICurrencyCalculator, CsvCurrencyCalculator>();
 
 var app = builder.Build();
 

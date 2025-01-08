@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyConverter.Blazor", "CurrencyConverter.Blazor\CurrencyConverter.Blazor\CurrencyConverter.Blazor.csproj", "{3B337E14-5385-4D7C-B987-1089D3B3B5F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyConverter.Blazor", "CurrencyConverter.Blazor\CurrencyConverter.Blazor\CurrencyConverter.Blazor.csproj", "{3B337E14-5385-4D7C-B987-1089D3B3B5F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyConverter.Blazor.Client", "CurrencyConverter.Blazor\CurrencyConverter.Blazor.Client\CurrencyConverter.Blazor.Client.csproj", "{F0494057-3F52-4597-8BBF-D50E2ED22D39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyConverter.Blazor.Client", "CurrencyConverter.Blazor\CurrencyConverter.Blazor.Client\CurrencyConverter.Blazor.Client.csproj", "{F0494057-3F52-4597-8BBF-D50E2ED22D39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyConverter.Domain", "CurrencyConverter.Domain\CurrencyConverter.Domain.csproj", "{141CAFA0-EAF1-40D3-99AA-30D49063AD75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyConverter.Domain", "CurrencyConverter.Domain\CurrencyConverter.Domain.csproj", "{141CAFA0-EAF1-40D3-99AA-30D49063AD75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyConverter.Logic", "CurrencyConverter.Logic\CurrencyConverter.Logic.csproj", "{6262E48A-0F0F-4F51-ACF6-E6381EFF4877}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyConverter.Logic", "CurrencyConverter.Logic\CurrencyConverter.Logic.csproj", "{6262E48A-0F0F-4F51-ACF6-E6381EFF4877}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
