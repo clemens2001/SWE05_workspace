@@ -2,6 +2,18 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h3>RandomButton SSR</h3>
 
-Welcome to your new app.
+<RandomButton />
+
+<h3>RandomButton SSR + interactive</h3>
+
+<RandomButton @rendermode="InteractiveServer" Max="10" />
+
+<h3>RandomButton (Interactive) Web Assembly</h3>
+
+<RandomButton @rendermode="InteractiveWebAssembly" Max="1000" />
+
+<h3>RandomButton Interactive Auto</h3>
+
+<RandomButton @rendermode="InteractiveAuto" Max="1000" />

@@ -1,0 +1,23 @@
+﻿
+<span>
+    <button style="font-size: 22px;" @onclick="OnClick">@randomValue</button>
+</span>
+
+<h4>Browser: @OperatingSystem.IsBrowser()</h4>
+
+@code {
+    private Random random = new();
+
+    private int randomValue = 0;
+
+    [Parameter]
+    public int Max { get; set; } = 100; 
+
+    private void OnClick(MouseEventArgs e)
+    {
+        randomValue = random.Next(1, Max);
+    }
+
+
+
+}
